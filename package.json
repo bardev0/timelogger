@@ -4,10 +4,12 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-    	"build" : "pnpm exec tsc",
-			"package-server-linux" : "pnpm exec pkg ./dist/express.js --target node18-linux-x64 -o ./build/express",
-			"package-cmd-linux" : "pnpm exec pkg ./dist/cmd.js --target node18-linux-x64 -o ./build/timelogger"
-		},
+        "build": "pnpm exec tsc",
+        "package-server-linux": "pnpm exec pkg ./dist/express.js --target node18-linux-x64 -o ./build/express",
+        "package-cmd-linux": "pnpm exec pkg ./dist/cmd.js --target node18-linux-x64 -o ./build/timelogger",
+        "package-cmd-macos": "pnpm exec pkg ./dist/cmd.js --target node18-macos-arm64 -o ./build/timelogger",
+        "package-server-macos": "pnpm exec pkg ./dist/express.js --target node18-macos-arm64 -o ./build/express"
+    },
     "keywords": [],
     "author": "",
     "license": "ISC",
