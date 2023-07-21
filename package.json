@@ -4,8 +4,10 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
+    	"build" : "pnpm exec tsc",
+			"package-server-linux" : "pnpm exec pkg ./dist/express.js --target node18-linux-x64 -o ./build/express",
+			"package-cmd-linux" : "pnpm exec pkg ./dist/cmd.js --target node18-linux-x64 -o ./build/timelogger"
+		},
     "keywords": [],
     "author": "",
     "license": "ISC",
