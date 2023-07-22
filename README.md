@@ -28,8 +28,6 @@ pnpm run package-server-linux
 ```
 pnpm run package-cmd-macos
 pnpm run package-server-macos
-
-
 ```
 
 ## Configuration
@@ -41,3 +39,6 @@ Users can connect to local MongoDB instance
 ### Start
 
 `./timelogger --start` initilizes new session
+`./timelogger --stop` stops last session
+`./timelogger --list` list all sessions ( with open current one )
+`./timelogger --total` sums up total time spent coding

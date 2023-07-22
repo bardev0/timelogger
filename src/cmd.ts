@@ -10,7 +10,7 @@ switch (args[0]) {
         console.log("start");
         break;
     case "--end":
-        console.log("break");
+        console.log("stop");
         break;
     case "--list":
         console.log("list");
