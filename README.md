@@ -37,10 +37,12 @@ Copy **timelogger.toml** to `~./config/` folder.
 ## Usage
 | Command      | Description |
 | ----------- | ----------- |
-| Header      | Title       |
-| Paragraph   | Text        |
+| `./timelogger -s`| initilizes new session|
+| `./timelogger -c`| closes last session|
+| `./timelogger -los` | list all open sessions|
+| `./timelogger -lcs` | list all closed sessions|
 
-`./timelogger -s` initilizes new session
-`./timelogger -c` closes last session
-`./timelogger -los` list all open sessions
-`./timelogger -lcs` list all closed sessions 
+# Roadmap
+- [] finish all CLI logging options
+- [] add CVS export
+- [] add templating enging to export stats to HTML/PDF for fun with charts.js
