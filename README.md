@@ -55,6 +55,6 @@ Copy **timelogger.toml** to `~./config/` folder.
 
 # Roadmap
 
--   [ ] finish all CLI logging options
+-   [x] finish all CLI logging options
 -   [ ] add CVS export
 -   [ ] add templating enging to export stats to HTML/PDF for fun with charts.js
