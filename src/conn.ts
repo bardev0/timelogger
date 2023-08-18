@@ -2,7 +2,7 @@ import { MongoClient } from "mongodb";
 import process from "process";
 import * as toml from "toml";
 import * as fs from "fs";
-import { TConfig, TOpenSession } from "./types";
+import { TConfig, TOpenSession, TStartSessionReturn } from "./types";
 
 let homePath = process.env.HOME;
 let configPath = "/.config/timelogger.toml";
@@ -38,7 +38,12 @@ export async function startOpenSession() {
         sessionTimeStartString: currentTimeString,
     };
     let data = await collection.insertOne(doc);
-    return data;
+
+		let returnData: TStartSessionReturn = {
+			sessAdded: data.acknowledged,
+			sessStartTime: currentTime
+		}
+    return returnData;
 }
 
 export async function closeLastSession() {
@@ -59,5 +64,5 @@ export async function closeLastSession() {
     let newConnection = database.collection("closedSessions");
     let cursor = await newConnection.insertOne(newClosedSes);
 
-    return `Session started on ${result?.value?.sessionTimeStartDateObj.toUTCString()} closed. \nTotal time: ${timeDelta}`;
+    return `Session started on ${result?.value?.sessionTimeStartDateObj.toLocaleString()} closed. \nTotal time: ${timeDelta}`;
 }

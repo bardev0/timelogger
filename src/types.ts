@@ -10,3 +10,8 @@ export type TOpenSession = {
     sessionTimeStartDateObj: Date;
     sessionTimeStartString: string;
 };
+
+export type TStartSessionReturn = {
+	sessAdded: boolean,
+		sessStartTime: Date
+}

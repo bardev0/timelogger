@@ -1,5 +1,6 @@
 import process from "process";
 import { fetchOpenSession, startOpenSession, closeLastSession } from "./conn";
+import {TStartSessionReturn} from "./types";
 const args = process.argv.splice(2);
 
 //debug
@@ -9,8 +10,8 @@ async function runtime() {
         // works
         // start session
         case "-s":
-            let start = await startOpenSession();
-            console.log(start);
+            let dane = await startOpenSession();
+            console.log(`Session started : ${dane.sessAdded}\nTime Start : ${dane.sessStartTime.toLocaleString()}`); 
             process.exit();
         // works
         // close session
