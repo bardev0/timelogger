@@ -1,16 +1,20 @@
 import { MongoClient } from "mongodb";
 import process from "process";
-import dotenv from "dotenv";
-dotenv.config();
-const pass = process.env.MONGO_PASSWORD;
-const uri = `mongodb+srv://greg1111:${pass}@cluster0.nsckr5l.mongodb.net/?retryWrites=true&w=majority`;
-const cliet = new MongoClient(uri);
+import * as toml from 'toml'
+import * as fs from 'fs'
+import { TConfig } from "./types";
 
-export async function fetchOpenSession() {
-		let database = cliet.db("TimeLoggerCluster")
-		let collection = database.collection("openSessions")
+let homePath = process.env.HOME
+let configPath = "/.config/timelogger.toml"
+let fullPath = homePath + configPath
+let dataRaw = fs.readFileSync(fullPath, "utf-8")
+let config : TConfig = toml.parse(dataRaw)
+console.log(config)
+// export async function fetchOpenSession() {
+// 		let database = client.db("TimeLoggerCluster")
+// 		let collection = database.collection("openSessions")
 
-		let result = await collection.find().toArray()
-		return result
-	}
+// 		let result = await collection.find().toArray()
+// 		return result
+// 	}
  
