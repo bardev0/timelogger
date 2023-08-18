@@ -3,7 +3,7 @@
 ## About
 
 Simple, command line tool that allows users to log their time spent on project durring a coding session.
-Build with open-soucre, data privacy and customization in mind lets you to simplify your time loging habits and focus on projects on hand. 
+Build with open-soucre, data privacy and customization in mind lets you to simplify your time loging habits and focus on projects on hand.
 
 ## Installation
 
@@ -21,19 +21,18 @@ All executables are placed in **build** directory.
 
 ```
 pnpm run package-cmd-linux
-pnpm run package-server-linux
 ```
 
 > -   MacOs
 
 ```
 pnpm run package-cmd-macos
-pnpm run package-server-macos
 ```
 
 ## Configuration
 
-Users can connect to local MongoDB instance
+Example config file is included withing repo.
+Copy **timelogger.toml** to ```~./config/``` folder.
 
 ## Usage
 

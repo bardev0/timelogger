@@ -1,0 +1,5 @@
+# This is a TOML document
+
+mongoURI =  "mongodb+srv://<PASTE YOUR MONGO URI HERE>"
+mongoUser = "<YOUR USERNAME FOR MONGODB INSTACE"
+mongoPass = "<YOUR PASSWORD FOR MONGODB INSTACE"

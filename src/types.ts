@@ -1,5 +1,5 @@
 export type TConfig = {
-mongoURI: string,
-mogogUser: string,
-mongoPass: string,
-}
+    mongoURI: string;
+    mongoUser: string;
+    mongoPass: string;
+};
