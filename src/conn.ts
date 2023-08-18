@@ -26,6 +26,13 @@ export async function fetchOpenSession() {
     return result;
 }
 
+export async function fetchClosedSessions() {
+    let collection = database.collection("closedSessions");
+    let result = await collection.find().toArray();
+    return result;
+		
+}
+
 export async function startOpenSession() {
     // add check if there non open sessions
 
@@ -39,10 +46,10 @@ export async function startOpenSession() {
     };
     let data = await collection.insertOne(doc);
 
-		let returnData: TStartSessionReturn = {
-			sessAdded: data.acknowledged,
-			sessStartTime: currentTime
-		}
+    let returnData: TStartSessionReturn = {
+        sessAdded: data.acknowledged,
+        sessStartTime: currentTime,
+    };
     return returnData;
 }
 
@@ -65,4 +72,22 @@ export async function closeLastSession() {
     let cursor = await newConnection.insertOne(newClosedSes);
 
     return `Session started on ${result?.value?.sessionTimeStartDateObj.toLocaleString()} closed. \nTotal time: ${timeDelta}`;
+}
+
+export async function totalSessionTime() {
+    let collection = database.collection("closedSessions");
+    let returnTotalTime = {
+        totalTime: 0,
+        totalSeshNumber: 0,
+    };
+    let data = await collection.find().toArray();
+    let tempTime: number = 0;
+    data.forEach((ses) => {
+        let temp = JSON.parse(JSON.stringify(tempTime));
+        temp = temp + ses.sessionTimeDelta;
+        tempTime = temp;
+    });
+    returnTotalTime.totalSeshNumber = data.length;
+    returnTotalTime.totalTime = tempTime;
+    return returnTotalTime;
 }

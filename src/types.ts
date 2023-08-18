@@ -12,6 +12,6 @@ export type TOpenSession = {
 };
 
 export type TStartSessionReturn = {
-	sessAdded: boolean,
-		sessStartTime: Date
-}
+    sessAdded: boolean;
+    sessStartTime: Date;
+};

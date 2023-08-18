@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "dev": "pnpm nodemon -- ./src/cmd.ts --end",
+        "dev": "pnpm nodemon -- ./src/cmd.ts -lcs",
         "build": "pnpm exec tsc",
         "package-cmd-linux": "pnpm exec pkg ./dist/cmd.js --target node18-linux-x64 -o ./build/timelogger",
         "package-cmd-macos": "pnpm exec pkg ./dist/cmd.js --target node18-macos-arm64 -o ./build/timelogger"
