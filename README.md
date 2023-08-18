@@ -32,13 +32,13 @@ pnpm run package-cmd-macos
 ## Configuration
 
 Example config file is included withing repo.
-Copy **timelogger.toml** to ```~./config/``` folder.
+Copy **timelogger.toml** to `~./config/` folder.
 
 ## Usage
 
 ### Start
 
-`./timelogger --start` initilizes new session
-`./timelogger --stop` stops last session
-`./timelogger --list` list all sessions ( with open current one )
-`./timelogger --total` sums up total time spent coding
+`./timelogger -s` initilizes new session
+`./timelogger -c` closes last session
+`./timelogger -los` list all open sessions
+`./timelogger -lcs` list all closed sessions 
