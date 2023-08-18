@@ -30,6 +30,13 @@ pnpm run package-cmd-linux
 pnpm run package-cmd-macos
 ```
 
+### Paths
+> -   MacOs
+
+```
+/usr/local/bin
+```
+
 ## Configuration
 
 Example config file is included withing repo.
