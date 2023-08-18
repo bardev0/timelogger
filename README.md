@@ -43,6 +43,6 @@ Copy **timelogger.toml** to `~./config/` folder.
 | `./timelogger -lcs` | list all closed sessions|
 
 # Roadmap
-- [] finish all CLI logging options
-- [] add CVS export
-- [] add templating enging to export stats to HTML/PDF for fun with charts.js
+- [ ] finish all CLI logging options
+- [ ] add CVS export
+- [ ] add templating enging to export stats to HTML/PDF for fun with charts.js
