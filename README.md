@@ -6,6 +6,7 @@ Simple, command line tool that allows users to log their time spent on project d
 Build with open-soucre, data privacy and customization in mind lets you to simplify your time loging habits and focus on projects on hand.
 
 ## Installation
+### Dependencies
 
 ```
 pnpm install
