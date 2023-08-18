@@ -51,7 +51,6 @@ export async function startOpenSession() {
     let doc: TOpenSession = {
         deviceID: config.deviceName,
         sessionTimeStartDateObj: currentTime,
-        sessionTimeStartString: currentTimeString,
     };
     let data = await collection.insertOne(doc);
 
@@ -94,7 +93,7 @@ export async function totalSessionTime() {
     };
     let data = await collection.find().toArray();
     let tempTime: number = 0;
-    data.forEach((ses) => {
+    data.forEach((ses: any) => {
         let temp = JSON.parse(JSON.stringify(tempTime));
         temp = temp + ses.sessionTimeDelta;
         tempTime = temp;

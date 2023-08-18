@@ -8,7 +8,6 @@ export type TConfig = {
 export type TOpenSession = {
     deviceID: string;
     sessionTimeStartDateObj: Date;
-    sessionTimeStartString: string;
 };
 
 export type TStartSessionReturn = {
