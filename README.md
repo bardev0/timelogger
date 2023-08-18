@@ -35,8 +35,10 @@ Example config file is included withing repo.
 Copy **timelogger.toml** to `~./config/` folder.
 
 ## Usage
-
-### Start
+| Command      | Description |
+| ----------- | ----------- |
+| Header      | Title       |
+| Paragraph   | Text        |
 
 `./timelogger -s` initilizes new session
 `./timelogger -c` closes last session
