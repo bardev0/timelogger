@@ -52,7 +52,7 @@ Copy **timelogger.toml** to `~./config/` folder.
 | `./timelogger -c`   | closes last session      |
 | `./timelogger -los` | list all open sessions   |
 | `./timelogger -lcs` | list all closed sessions |
-| `./timelogger -t`   | total time |
+| `./timelogger -t`   | total time               |
 
 # Roadmap
 

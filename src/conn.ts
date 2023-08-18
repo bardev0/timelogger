@@ -14,6 +14,16 @@ let mongoString: string = fillUser.replace("<password>", config.mongoPass);
 let client = new MongoClient(mongoString);
 let database = client.db("TimeLoggerCluster");
 
+
+export function humanTimeElapsed(time: number) {
+    let secondsStart = time / 1000;
+    let hours = Math.floor(secondsStart / 3600);
+    let minutes = Math.floor((secondsStart - hours * 3600) / 60);
+    let seconds = Math.floor(secondsStart - hours * 3600 - minutes * 60);
+    return `${hours} hours, ${minutes} minutes and ${seconds} seconds`;
+}
+
+
 function calcTime(startDate: Date) {
     const timeNow = Date.now();
     const timeDelta = timeNow - startDate.getTime();
@@ -30,7 +40,6 @@ export async function fetchClosedSessions() {
     let collection = database.collection("closedSessions");
     let result = await collection.find().toArray();
     return result;
-		
 }
 
 export async function startOpenSession() {
@@ -55,23 +64,26 @@ export async function startOpenSession() {
 
 export async function closeLastSession() {
     let collection = database.collection("openSessions");
-    let query = { deviceID: "macMiniM1" };
+    let query = { deviceID: config.deviceName };
     let result = await collection.findOneAndDelete(query, {
         sort: { _id: -1 },
     });
+    if (result.value == null) {
+        return "Open session first!";
+    } else {
+        let timeDelta = calcTime(result?.value?.sessionTimeStartDateObj);
 
-    let timeDelta = calcTime(result?.value?.sessionTimeStartDateObj);
+        let newClosedSes = {
+            deviceID: config.deviceName,
+            sessionTimeStartDateObj: result?.value?.sessionTimeStartDateObj,
+            sessionTimeDelta: timeDelta,
+        };
 
-    let newClosedSes = {
-        deviceID: config.deviceName,
-        sessionTimeStartDateObj: result?.value?.sessionTimeStartDateObj,
-        sessionTimeDelta: timeDelta,
-    };
+        let newConnection = database.collection("closedSessions");
+        let cursor = await newConnection.insertOne(newClosedSes);
 
-    let newConnection = database.collection("closedSessions");
-    let cursor = await newConnection.insertOne(newClosedSes);
-
-    return `Session started on ${result?.value?.sessionTimeStartDateObj.toLocaleString()} closed. \nTotal time: ${timeDelta}`;
+        return `Session started on ${result?.value?.sessionTimeStartDateObj.toLocaleString()} closed. \nTotal time: ${humanTimeElapsed(timeDelta)}`;
+    }
 }
 
 export async function totalSessionTime() {

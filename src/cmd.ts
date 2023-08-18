@@ -4,18 +4,12 @@ import {
     startOpenSession,
     closeLastSession,
     totalSessionTime,
-		fetchClosedSessions,
+    fetchClosedSessions,
 } from "./conn";
+import { humanTimeElapsed } from "./conn";
 import { TStartSessionReturn } from "./types";
 const args = process.argv.splice(2);
 
-function humanTimeElapsed(time: number) {
-    let secondsStart = time / 1000;
-    let hours = Math.floor(secondsStart / 3600);
-    let minutes = Math.floor((secondsStart - hours * 3600) / 60);
-    let seconds = Math.floor((secondsStart - (hours * 3600) - (minutes * 60)));
-    return `${hours} hours, ${minutes} minutes and ${seconds} seconds`;
-}
 //debug
 // console.log(args);
 async function runtime() {
@@ -27,9 +21,10 @@ async function runtime() {
             console.log(
                 `Session started : ${
                     data1.sessAdded
-                }\nTime Start : ${data1.sessStartTime.toLocaleString()}`
+                }\nTime Start : ${data1.sessStartTime.toLocaleString()}`,
             );
             process.exit();
+
         // works
         // close session
         case "-c":
@@ -39,12 +34,16 @@ async function runtime() {
 
         // list closed sessions
         case "-lcs":
-						let data5 = await fetchClosedSessions()
-						data5.forEach((ses) => {
-						console.log(ses.deviceID + " " + ses.sessionTimeStartDateObj.toLocaleString())
-						console.log(humanTimeElapsed(ses.sessionTimeDelta))
-						})
-						process.exit()
+            let data5 = await fetchClosedSessions();
+            data5.forEach((ses) => {
+                console.log(
+                    ses.deviceID +
+                        " " +
+                        ses.sessionTimeStartDateObj.toLocaleString(),
+                );
+                console.log(humanTimeElapsed(ses.sessionTimeDelta));
+            });
+            process.exit();
             break;
 
         // list open sessions
@@ -55,7 +54,7 @@ async function runtime() {
                 console.log(
                     `Device ID: ${
                         s.deviceID
-                    } \nSession started : ${s.sessionTimeStartDateObj.toLocaleString()} \n`
+                    } \nSession started : ${s.sessionTimeStartDateObj.toLocaleString()} \n`,
                 );
             });
             process.exit();
@@ -63,7 +62,7 @@ async function runtime() {
         case "-t":
             let data4 = await totalSessionTime();
             console.log(`Total time : ${humanTimeElapsed(
-                data4.totalTime
+                data4.totalTime,
             )}\nTotal number of sessions: ${data4.totalSeshNumber}
 												`);
             process.exit();
