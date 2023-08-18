@@ -44,6 +44,7 @@ async function runtime() {
 						console.log(ses.deviceID + " " + ses.sessionTimeStartDateObj.toLocaleString())
 						console.log(humanTimeElapsed(ses.sessionTimeDelta))
 						})
+						process.exit()
             break;
 
         // list open sessions
